@@ -65,63 +65,68 @@
             background: linear-gradient(to top, #005c97, transparent);
             border-radius: 0 0 20px 20px;
         }
-        /* Đàn chim bay lượn trang chủ */
+        /* Đàn chim vỗ cánh hoạt họa */
         .bird-home {
             position: absolute;
-            width: 15px; height: 8px;
-            border-top: 2px solid #fff;
+            width: 16px; height: 10px;
+            border-top: 3px solid #ffffff;
             border-radius: 50% 50% 0 0;
             animation: flyBird 6s linear infinite;
         }
-        .bird-home:nth-child(1) { top: 80px; left: -20px; animation-delay: 0s; }
-        .bird-home:nth-child(2) { top: 120px; left: -40px; animation-delay: 2s; }
+        .bird-home:nth-child(3) { top: 80px; left: -20px; animation-delay: 0s; }
+        .bird-home:nth-child(4) { top: 120px; left: -50px; animation-delay: 2.5s; }
         
         @keyframes flyBird {
             0% { transform: translateX(-30px) translateY(0) scale(0.8); opacity: 0; }
             30% { opacity: 1; }
             70% { opacity: 1; }
-            100% { transform: translateX(420px) translateY(-30px) scale(1.2); opacity: 0; }
+            100% { transform: translateX(430px) translateY(-30px) scale(1.2); opacity: 0; }
         }
 
+        /* NỘI DUNG TRANG CHỦ (Hiển thị nổi lên trên nền) */
         #home-screen {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             height: 100%;
-            z-index: 1;
+            width: 100%;
+            z-index: 5;
             position: relative;
         }
         #home-screen h1 {
             font-size: 26px;
             margin-bottom: 15px;
             color: #00fff0;
-            text-shadow: 0 0 10px rgba(0,255,240,0.6);
+            text-shadow: 0 0 12px rgba(0,255,240,0.8);
+            font-weight: bold;
         }
         #home-screen p {
             font-size: 16px;
-            margin-bottom: 30px;
+            margin-bottom: 35px;
             line-height: 1.5;
-            padding: 0 10px;
-            color: #e2e8f0;
+            padding: 0 15px;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
         .btn-play {
             background: linear-gradient(135deg, #00c6ff, #0072ff);
             color: white;
             border: none;
-            padding: 12px 35px;
-            font-size: 18px;
+            padding: 14px 45px;
+            font-size: 20px;
             font-weight: bold;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0, 198, 255, 0.5);
+            box-shadow: 0 4px 20px rgba(0, 198, 255, 0.6);
             transition: 0.2s;
+            letter-spacing: 1px;
         }
         .btn-play:active {
             transform: scale(0.95);
         }
 
-        /* --- TRANG CHỌN NHÂN VẬT: THIÊN NHIÊN SỐNG ĐỘNG, MÁY BAY, NƯỚC CHẢY --- */
+        /* --- TRANG CHỌN NHÂN VẬT --- */
         .screen {
             display: none;
             width: 100%;
@@ -141,11 +146,11 @@
             border-radius: 20px;
         }
 
-        /* Dòng nước suối lấp lánh chuyển động dưới nền */
+        /* Dòng nước suối lấp lánh chuyển động */
         .flowing-water {
             position: absolute;
             bottom: 0; left: 0; width: 200%; height: 80px;
-            background: repeating-linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0.1) 20px, transparent 20px, transparent 40px);
+            background: repeating-linear-gradient(45deg, rgba(255,255,255,0.15), rgba(255,255,255,0.15) 20px, transparent 20px, transparent 40px);
             animation: waterMove 4s linear infinite;
         }
         @keyframes waterMove {
@@ -153,7 +158,7 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* Máy bay bay ngang màn hình */
+        /* Máy bay bay ngang */
         .airplane-anim {
             position: absolute;
             top: 50px;
@@ -175,7 +180,7 @@
             top: 90px;
             left: -30px;
             width: 18px; height: 10px;
-            border-top: 2px solid #ffeb3b;
+            border-top: 3px solid #ffeb3b;
             border-radius: 50% 50% 0 0;
             animation: flyBirdChar 7s linear infinite;
             animation-delay: 1s;
@@ -192,8 +197,8 @@
             font-size: 22px;
             margin-bottom: 15px;
             color: #ffeb3b;
-            z-index: 2;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+            z-index: 5;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
 
         .char-container {
@@ -202,11 +207,11 @@
             width: 100%;
             justify-content: center;
             margin-bottom: 15px;
-            z-index: 2;
+            z-index: 5;
         }
 
         .char-card {
-            background: rgba(0, 0, 0, 0.45);
+            background: rgba(0, 0, 0, 0.5);
             border: 2px solid #00fff0;
             border-radius: 15px;
             width: 46%;
@@ -215,7 +220,7 @@
             flex-direction: column;
             align-items: center;
             backdrop-filter: blur(5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
         }
 
         .avatar-box {
@@ -247,7 +252,7 @@
             object-fit: cover;
             border-radius: 50%;
             border: 2px solid #fff;
-            z-index: 3;
+            z-index: 6;
             box-shadow: 0 0 10px rgba(255,255,255,0.6);
         }
 
@@ -285,7 +290,7 @@
 <body>
 
     <div class="container">
-        <!-- TRANG CHỦ: NỀN BIỂN, TRĂNG VÀ ĐÀN CHIM VỖ CÁNH -->
+        <!-- TRANG CHỦ -->
         <div id="home-screen">
             <div class="home-bg">
                 <div class="moon"></div>
@@ -295,10 +300,11 @@
             </div>
             <h1>THẾ GIỚI CỦA TÔI</h1>
             <p>Hello xin chào! Đã tới với thế giới game độc quyền đỉnh cao lớp 8.</p>
-            <button class="btn-play" onclick="goToCharacterSelect()">OPEN / PLAY</button>
+            <!-- Nút bấm đã sửa thành duy nhất chữ OPEN -->
+            <button class="btn-play" onclick="goToCharacterSelect()">OPEN</button>
         </div>
 
-        <!-- TRANG CHỌN NHÂN VẬT: THIÊN NHIÊN, NƯỚC CHẢY, MÁY BAY VÀ ĐẦU LẮC LƯ -->
+        <!-- TRANG CHỌN NHÂN VẬT -->
         <div id="char-screen" class="screen">
             <div class="nature-bg">
                 <div class="flowing-water"></div>
@@ -328,7 +334,7 @@
                 </div>
             </div>
             
-            <p style="font-size: 13px; color: #fff; z-index: 2; font-weight: bold; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Chạm nút CHỌN bên dưới để bắt đầu!</p>
+            <p style="font-size: 13px; color: #fff; z-index: 5; font-weight: bold; text-shadow: 0 1px 3px rgba(0,0,0,0.8);">Chạm nút CHỌN bên dưới để bắt đầu!</p>
         </div>
     </div>
 

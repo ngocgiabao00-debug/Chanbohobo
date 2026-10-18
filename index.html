@@ -2,185 +2,126 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Thế Giới Game Độc Lạ - Lớp 8</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thế Giới Game Độc Lạ</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: Arial, sans-serif;
         }
-        html, body {
-            width: 100%;
-            height: 100%;
-            background: #0b132b;
+        body {
+            background-color: #0b132b;
             color: #ffffff;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            overflow: hidden;
+            padding: 10px;
         }
-        
-        /* KHUNG GAME CHÍNH */
         .container {
-            width: 92%;
-            max-width: 380px;
-            height: 90vh;
+            width: 100%;
+            max-width: 360px;
+            height: 600px;
+            background: linear-gradient(to bottom, #1d3557, #457b9d);
             border-radius: 20px;
-            border: 2px solid #00fff0;
-            box-shadow: 0 0 20px rgba(0, 255, 240, 0.4);
+            border: 3px solid #00fff0;
             position: relative;
             overflow: hidden;
-            background: #0d1b2a;
-        }
-
-        /* LỚP NỀN ĐỘNG TRANG CHỦ */
-        .home-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, #0d1b2a, #1b263b, #415a77);
-            z-index: 1; /* Nền nằm ở lớp dưới cùng */
-        }
-        .moon {
-            position: absolute;
-            top: 30px; right: 30px;
-            width: 45px; height: 45px;
-            background: #f6d365;
-            border-radius: 50%;
-            box-shadow: 0 0 20px #f6d365;
-            z-index: 2;
-        }
-        .sea-waves {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 25%;
-            background: linear-gradient(to top, #1d3557, transparent);
-            z-index: 2;
-        }
-        
-        /* CHIM BAY LƯỢN HOẠT HỌA */
-        .bird {
-            position: absolute;
-            width: 16px; height: 10px;
-            border-top: 3px solid #ffffff;
-            border-radius: 50% 50% 0 0;
-            animation: flyBird 6s linear infinite;
-            z-index: 3;
-        }
-        .bird1 { top: 70px; left: -20px; animation-delay: 0s; }
-        .bird2 { top: 110px; left: -40px; animation-delay: 2.5s; }
-        @keyframes flyBird {
-            0% { transform: translateX(-30px) translateY(0); opacity: 0; }
-            30% { opacity: 1; }
-            70% { opacity: 1; }
-            100% { transform: translateX(400px) translateY(-30px); opacity: 0; }
-        }
-
-        /* NỘI DUNG CHỮ & NÚT BẤM (NỔI TRÊN NỀN) */
-        #home-screen {
-            position: relative;
-            z-index: 10; /* Nằm đè lên trên tất cả các lớp nền */
-            width: 100%;
-            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 20px;
             text-align: center;
-            background: rgba(0, 0, 0, 0.3); /* Tạo lớp phủ tối nhẹ để làm nổi bật chữ */
+            padding: 20px;
+        }
+
+        /* Mặt trăng trang trí */
+        .moon {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            width: 40px;
+            height: 40px;
+            background: #ffb703;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #ffb703;
+        }
+
+        /* Chim bay qua màn hình */
+        .bird {
+            position: absolute;
+            top: 60px;
+            left: -30px;
+            font-size: 20px;
+            animation: fly 6s linear infinite;
+        }
+        @keyframes fly {
+            0% { transform: translateX(0); opacity: 0; }
+            30% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { transform: translateX(400px); opacity: 0; }
+        }
+
+        /* TRANG CHỦ */
+        #home-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            z-index: 10;
         }
         #home-screen h1 {
             font-size: 24px;
             color: #00fff0;
             margin-bottom: 15px;
-            text-shadow: 0 0 10px rgba(0, 255, 240, 0.9), 0 2px 4px #000;
-            font-weight: bold;
+            text-shadow: 0 2px 4px #000;
         }
         #home-screen p {
             font-size: 15px;
             color: #ffffff;
-            line-height: 1.5;
-            margin-bottom: 35px;
-            text-shadow: 0 2px 5px #000000;
-            padding: 0 10px;
+            margin-bottom: 30px;
+            line-height: 1.4;
+            text-shadow: 0 1px 3px #000;
         }
-        .btn-play {
-            background: linear-gradient(135deg, #00c6ff, #0072ff);
+        .btn-open {
+            background-color: #e63946;
             color: white;
             border: none;
-            padding: 14px 45px;
+            padding: 14px 40px;
             font-size: 20px;
             font-weight: bold;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0, 198, 255, 0.6);
-            letter-spacing: 1px;
-        }
-        .btn-play:active {
-            transform: scale(0.95);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
         /* TRANG CHỌN NHÂN VẬT */
-        .screen {
+        #char-screen {
             display: none;
-            width: 100%;
-            height: 100%;
-            position: relative;
-            z-index: 10;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            padding: 15px;
-        }
-        .nature-bg {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(135deg, #134e5e, #71b280);
-            z-index: 1;
-        }
-        .flowing-water {
-            position: absolute;
-            bottom: 0; left: 0; width: 200%; height: 60px;
-            background: repeating-linear-gradient(45deg, rgba(255,255,255,0.15), rgba(255,255,255,0.15) 15px, transparent 15px, transparent 30px);
-            animation: waterMove 3s linear infinite;
-            z-index: 2;
-        }
-        @keyframes waterMove {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .airplane-anim {
-            position: absolute;
-            top: 40px; left: -50px;
-            font-size: 24px;
-            animation: flyPlane 8s linear infinite;
-            z-index: 3;
-        }
-        @keyframes flyPlane {
-            0% { transform: translateX(0); opacity: 0; }
-            20% { opacity: 1; }
-            80% { opacity: 1; }
-            100% { transform: translateX(420px); opacity: 0; }
-        }
-
-        .screen h2 {
-            font-size: 20px;
-            color: #ffeb3b;
-            margin-bottom: 20px;
+            justify-content: center;
+            width: 100%;
             z-index: 10;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+        }
+        #char-screen h2 {
+            font-size: 20px;
+            color: #ffb703;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px #000;
         }
         .char-container {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             width: 100%;
             justify-content: center;
-            z-index: 10;
             margin-bottom: 15px;
         }
         .char-card {
-            background: rgba(0, 0, 0, 0.6);
+            background: rgba(0, 0, 0, 0.5);
             border: 2px solid #00fff0;
             border-radius: 12px;
             width: 48%;
@@ -191,8 +132,8 @@
         }
         .avatar-box {
             position: relative;
-            width: 100px;
-            height: 140px;
+            width: 90px;
+            height: 130px;
             margin-bottom: 10px;
         }
         .body-img {
@@ -200,6 +141,8 @@
             height: 100%;
             object-fit: contain;
         }
+        
+        /* Hiệu ứng đầu lắc lư */
         @keyframes headShake {
             0% { transform: rotate(0deg); }
             25% { transform: rotate(-8deg); }
@@ -214,19 +157,18 @@
             object-fit: cover;
             border-radius: 50%;
             border: 2px solid #fff;
-            z-index: 12;
         }
-        .face-char1 { top: 12px; left: 28px; width: 44px; height: 44px; }
-        .face-char2 { top: 18px; left: 28px; width: 44px; height: 44px; }
+        .face-char1 { top: 12px; left: 23px; width: 42px; height: 42px; }
+        .face-char2 { top: 16px; left: 23px; width: 42px; height: 42px; }
 
         .btn-select {
-            background: linear-gradient(135deg, #ff416c, #ff4b2b);
+            background-color: #2a9d8f;
             color: white;
             border: none;
-            padding: 8px 12px;
+            padding: 8px 15px;
             font-size: 13px;
             font-weight: bold;
-            border-radius: 20px;
+            border-radius: 15px;
             cursor: pointer;
             width: 90%;
         }
@@ -235,27 +177,19 @@
 <body>
 
     <div class="container">
+        <!-- HỌA TIẾT NỀN -->
+        <div class="moon"></div>
+        <div class="bird">🕊️</div>
+
         <!-- TRANG CHỦ -->
         <div id="home-screen">
-            <!-- NỀN ĐỘNG NẰM PHÍA SAU -->
-            <div class="home-bg"></div>
-            <div class="moon"></div>
-            <div class="sea-waves"></div>
-            <div class="bird bird1"></div>
-            <div class="bird bird2"></div>
-            
-            <!-- NỘI DUNG NẰM PHÍA TRƯỚC -->
             <h1>THẾ GIỚI CỦA TÔI</h1>
             <p>Hello xin chào! Đã tới với thế giới game độc quyền đỉnh cao lớp 8.</p>
-            <button class="btn-play" onclick="goToCharacterSelect()">OPEN</button>
+            <button class="btn-open" onclick="goToCharacterSelect()">OPEN</button>
         </div>
 
         <!-- TRANG CHỌN NHÂN VẬT -->
-        <div id="char-screen" class="screen">
-            <div class="nature-bg"></div>
-            <div class="flowing-water"></div>
-            <div class="airplane-anim">✈️</div>
-
+        <div id="char-screen">
             <h2>CHỌN NHÂN VẬT</h2>
             
             <div class="char-container">
@@ -278,7 +212,7 @@
                 </div>
             </div>
             
-            <p style="font-size: 12px; color: #fff; z-index: 10; font-weight: bold; text-shadow: 0 1px 3px #000;">Chạm nút CHỌN bên dưới để bắt đầu!</p>
+            <p style="font-size: 12px; color: #fff;">Chạm nút CHỌN bên dưới để bắt đầu!</p>
         </div>
     </div>
 

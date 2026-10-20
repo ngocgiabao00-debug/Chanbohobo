@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thế Giới Game Độc Lạ</title>
+    <title>Thế Giới Game Độc Lạ - Lớp 8</title>
     <style>
         * {
             box-sizing: border-box;
@@ -22,9 +22,9 @@
         }
         .container {
             width: 100%;
-            max-width: 360px;
-            height: 600px;
-            background: linear-gradient(to bottom, #1d3557, #457b9d);
+            max-width: 380px;
+            height: 650px;
+            background: linear-gradient(to bottom, #1d3557, #134e5e);
             border-radius: 20px;
             border: 3px solid #00fff0;
             position: relative;
@@ -35,33 +35,7 @@
             align-items: center;
             text-align: center;
             padding: 20px;
-        }
-
-        /* Mặt trăng trang trí */
-        .moon {
-            position: absolute;
-            top: 25px;
-            right: 25px;
-            width: 40px;
-            height: 40px;
-            background: #ffb703;
-            border-radius: 50%;
-            box-shadow: 0 0 15px #ffb703;
-        }
-
-        /* Chim bay qua màn hình */
-        .bird {
-            position: absolute;
-            top: 60px;
-            left: -30px;
-            font-size: 20px;
-            animation: fly 6s linear infinite;
-        }
-        @keyframes fly {
-            0% { transform: translateX(0); opacity: 0; }
-            30% { opacity: 1; }
-            70% { opacity: 1; }
-            100% { transform: translateX(400px); opacity: 0; }
+            box-shadow: 0 0 20px rgba(0,255,240,0.4);
         }
 
         /* TRANG CHỦ */
@@ -71,31 +45,34 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            z-index: 10;
         }
         #home-screen h1 {
             font-size: 24px;
             color: #00fff0;
             margin-bottom: 15px;
-            text-shadow: 0 2px 4px #000;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
         #home-screen p {
             font-size: 15px;
             color: #ffffff;
-            margin-bottom: 30px;
-            line-height: 1.4;
-            text-shadow: 0 1px 3px #000;
+            margin-bottom: 35px;
+            line-height: 1.5;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            padding: 0 10px;
         }
         .btn-open {
-            background-color: #e63946;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
             color: white;
             border: none;
-            padding: 14px 40px;
-            font-size: 20px;
+            padding: 12px 40px;
+            font-size: 18px;
             font-weight: bold;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+        }
+        .btn-open:active {
+            transform: scale(0.95);
         }
 
         /* TRANG CHỌN NHÂN VẬT */
@@ -105,17 +82,16 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            z-index: 10;
         }
         #char-screen h2 {
             font-size: 20px;
-            color: #ffb703;
+            color: #ffeb3b;
             margin-bottom: 20px;
-            text-shadow: 0 2px 4px #000;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
         }
         .char-container {
             display: flex;
-            gap: 10px;
+            gap: 12px;
             width: 100%;
             justify-content: center;
             margin-bottom: 15px;
@@ -132,8 +108,8 @@
         }
         .avatar-box {
             position: relative;
-            width: 90px;
-            height: 130px;
+            width: 100px;
+            height: 140px;
             margin-bottom: 10px;
         }
         .body-img {
@@ -158,17 +134,17 @@
             border-radius: 50%;
             border: 2px solid #fff;
         }
-        .face-char1 { top: 12px; left: 23px; width: 42px; height: 42px; }
-        .face-char2 { top: 16px; left: 23px; width: 42px; height: 42px; }
+        .face-char1 { top: 12px; left: 28px; width: 44px; height: 44px; }
+        .face-char2 { top: 18px; left: 28px; width: 44px; height: 44px; }
 
         .btn-select {
-            background-color: #2a9d8f;
+            background-color: #00adb5;
             color: white;
             border: none;
-            padding: 8px 15px;
+            padding: 8px 12px;
             font-size: 13px;
             font-weight: bold;
-            border-radius: 15px;
+            border-radius: 20px;
             cursor: pointer;
             width: 90%;
         }
@@ -177,10 +153,6 @@
 <body>
 
     <div class="container">
-        <!-- HỌA TIẾT NỀN -->
-        <div class="moon"></div>
-        <div class="bird">🕊️</div>
-
         <!-- TRANG CHỦ -->
         <div id="home-screen">
             <h1>THẾ GIỚI CỦA TÔI</h1>
@@ -212,7 +184,7 @@
                 </div>
             </div>
             
-            <p style="font-size: 12px; color: #fff;">Chạm nút CHỌN bên dưới để bắt đầu!</p>
+            <p style="font-size: 12px; color: #fff; font-weight: bold;">Chạm nút CHỌN bên dưới để bắt đầu!</p>
         </div>
     </div>
 

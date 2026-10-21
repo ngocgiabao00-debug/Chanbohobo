@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Thế Giới Game Độc Lạ - Lớp 8</title>
     <style>
         * {
@@ -18,76 +18,183 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 10px;
+            overflow: hidden;
         }
+
+        /* KHUNG KHUNG CẢNH BÊN TRONG CONTAINER */
         .container {
             width: 100%;
             max-width: 380px;
             height: 650px;
-            background: linear-gradient(to bottom, #1d3557, #134e5e);
             border-radius: 20px;
             border: 3px solid #00fff0;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,255,240,0.4);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 20px;
-            box-shadow: 0 0 20px rgba(0,255,240,0.4);
         }
 
-        /* TRANG CHỦ */
-        #home-screen {
+        /* --- BỐI CẢNH NỀN: BẦU TRỜI, MẶT ĐẤT & BIỂN --- */
+        .view-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to bottom, #4ea8de 0%, #90e0ef 50%, #caf0f8 100%);
+            z-index: 1;
+        }
+
+        /* Biển xanh ở phía dưới */
+        .sea {
+            position: absolute;
+            bottom: 0; left: 0; width: 100%; height: 35%;
+            background: linear-gradient(to bottom, #0077b6, #023e8a);
+            z-index: 2;
+        }
+
+        /* Dải đất / Bờ biển ở giữa (giao giữa bầu trời và biển) */
+        .land {
+            position: absolute;
+            bottom: 30%; left: -10%; width: 120%; height: 80px;
+            background: #2b9348;
+            border-radius: 50% 50% 0 0;
+            border-top: 8px solid #55a630;
+            z-index: 3;
+        }
+
+        /* --- CÁC HIỆU ỨNG ĐỘNG (MÂY, CHIM VỖ CÁNH, MÁY BAY) --- */
+        
+        /* 1. MÂY TRÔI */
+        .cloud {
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50px;
+            opacity: 0.85;
+            z-index: 4;
+            animation: moveCloud linear infinite;
+        }
+        .cloud::before, .cloud::after {
+            content: '';
+            position: absolute;
+            background: #ffffff;
+            border-radius: 50%;
+        }
+        .cloud1 {
+            width: 80px; height: 26px; top: 40px; left: -100px;
+            animation-duration: 12s;
+        }
+        .cloud1::before { width: 35px; height: 35px; top: -15px; left: 12px; }
+        .cloud1::after { width: 25px; height: 25px; top: -10px; right: 12px; }
+
+        .cloud2 {
+            width: 100px; height: 30px; top: 90px; left: -120px;
+            animation-duration: 18s; animation-delay: 4s;
+        }
+        .cloud2::before { width: 45px; height: 45px; top: -20px; left: 15px; }
+        .cloud2::after { width: 30px; height: 30px; top: -12px; right: 15px; }
+
+        @keyframes moveCloud {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(520px); }
+        }
+
+        /* 2. CHIM VỖ CÁNH BAY */
+        .bird-wrapper {
+            position: absolute;
+            z-index: 5;
+            animation: flyAcross 9s linear infinite;
+        }
+        .bird1-pos { top: 70px; left: -50px; animation-delay: 1s; }
+        .bird2-pos { top: 120px; left: -50px; animation-delay: 5s; }
+
+        /* Khung xương cánh chim nhấp nháy vỗ cánh */
+        .bird-wings {
+            width: 18px;
+            height: 12px;
+            border-top: 3px solid #111;
+            border-left: 3px solid #111;
+            transform: rotate(45deg);
+            animation: flapWings 0.4s ease-in-out infinite alternate;
+        }
+        @keyframes flapWings {
+            0% { transform: rotate(20deg) scaleY(1); }
+            100% { transform: rotate(70deg) scaleY(0.4); }
+        }
+        @keyframes flyAcross {
+            0% { transform: translateX(0) translateY(0); }
+            50% { transform: translateX(230px) translateY(-15px); }
+            100% { transform: translateX(460px) translateY(5px); }
+        }
+
+        /* 3. MÁY BAY BAY NGANG */
+        .airplane {
+            position: absolute;
+            top: 35px; left: -60px;
+            font-size: 26px;
+            z-index: 5;
+            animation: flyPlane 14s linear infinite;
+            animation-delay: 2s;
+        }
+        @keyframes flyPlane {
+            0% { transform: translateX(0) rotate(2deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateX(480px) rotate(-2deg); opacity: 0; }
+        }
+
+        /* --- HIỂN THỊ NỘI DUNG (TRANG CHỦ & CHỌN NHÂN VẬT) --- */
+        #home-screen, #char-screen {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            width: 100%;
+            padding: 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.25);
         }
+
         #home-screen h1 {
-            font-size: 24px;
+            font-size: 26px;
             color: #00fff0;
             margin-bottom: 15px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 6px #000;
         }
         #home-screen p {
             font-size: 15px;
             color: #ffffff;
             margin-bottom: 35px;
             line-height: 1.5;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-            padding: 0 10px;
+            text-shadow: 0 2px 4px #000;
         }
         .btn-open {
             background: linear-gradient(135deg, #ff416c, #ff4b2b);
             color: white;
             border: none;
-            padding: 12px 40px;
-            font-size: 18px;
+            padding: 12px 45px;
+            font-size: 20px;
             font-weight: bold;
             border-radius: 30px;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.5);
         }
         .btn-open:active {
             transform: scale(0.95);
         }
 
-        /* TRANG CHỌN NHÂN VẬT */
+        /* MÀN HÌNH CHỌN NHÂN VẬT */
         #char-screen {
             display: none;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
         }
         #char-screen h2 {
-            font-size: 20px;
+            font-size: 22px;
             color: #ffeb3b;
             margin-bottom: 20px;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.8);
+            text-shadow: 0 2px 4px #000;
         }
         .char-container {
             display: flex;
@@ -97,7 +204,7 @@
             margin-bottom: 15px;
         }
         .char-card {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.6);
             border: 2px solid #00fff0;
             border-radius: 12px;
             width: 48%;
@@ -153,10 +260,28 @@
 <body>
 
     <div class="container">
+        <!-- HỌA TIẾT BẢO CẢNH (NỀN BIỂN, ĐẤT, MÂY, CHIM, MÁY BAY) -->
+        <div class="view-bg"></div>
+        <div class="land"></div>
+        <div class="sea"></div>
+        
+        <!-- Mây bay -->
+        <div class="cloud cloud1"></div>
+        <div class="cloud cloud2"></div>
+
+        <!-- Chim vỗ cánh bay -->
+        <div class="bird-wrapper bird1-pos"><div class="bird-wings"></div></div>
+        <div class="bird-wrapper bird2-pos"><div class="bird-wings"></div></div>
+
+        <!-- Máy bay bay ngang -->
+        <div class="airplane">✈️</div>
+
         <!-- TRANG CHỦ -->
         <div id="home-screen">
             <h1>THẾ GIỚI CỦA TÔI</h1>
             <p>Hello xin chào! Đã tới với thế giới game độc quyền đỉnh cao lớp 8.</p>
+
+            <!-- Nút bấm chữ OPEN duy nhất -->
             <button class="btn-open" onclick="goToCharacterSelect()">OPEN</button>
         </div>
 

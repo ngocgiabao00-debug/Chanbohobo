@@ -37,7 +37,7 @@
             align-items: center;
         }
 
-        /* --- 1. BACKGROUND NỀN --- */
+        /* --- 1. BACKGROUND NỀN (File: background.png) --- */
         .view-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -47,14 +47,14 @@
             z-index: 1;
         }
 
-        /* --- 2. HAI ĐÁM MÂY (Tự động lọc bỏ nền thừa) --- */
+        /* --- 2. ĐÁM MÂY (File: cloud1.png & cloud2.png - Tự động lọc bỏ nền thừa) --- */
         .cloud-base {
             position: absolute;
             z-index: 2;
             height: auto;
             object-fit: contain;
             opacity: 0.9;
-            mix-blend-mode: screen; 
+            mix-blend-mode: screen; /* Tự động làm biến mất phần nền trắng/xanh của ảnh mây */
             animation: moveCloud linear infinite;
         }
         .cloud-img1 {
@@ -75,7 +75,7 @@
             100% { transform: translateX(520px); }
         }
 
-        /* --- 3. MÁY BAY HIỆU ỨNG 3D/4D (Bay chéo từ dưới lên, phóng to và xả khói) --- */
+        /* --- 3. MÁY BAY 3D/4D BAY XÉO QUA ĐẦU (File: airplanes.png) --- */
         .airplane-wrapper {
             position: absolute;
             bottom: -50px;
@@ -87,21 +87,20 @@
             animation: fly3DPlane 9s ease-in-out infinite;
         }
         .airplanes-img {
-            width: 70px;
+            width: 75px;
             height: auto;
             object-fit: contain;
             image-rendering: pixelated;
         }
         /* Vệt khói trắng phản lực phía sau máy bay */
         .smoke-trail {
-            width: 90px;
+            width: 95px;
             height: 8px;
             background: linear-gradient(to left, rgba(255,255,255,0.95), rgba(255,255,255,0.2) 60%, transparent);
             border-radius: 5px;
             margin-right: -4px;
             filter: blur(1.2px);
         }
-        /* Hiệu ứng bay chéo 3D: từ góc dưới trái phóng to và bay xéo lên góc trên phải */
         @keyframes fly3DPlane {
             0% {
                 transform: translate(0, 0) scale(0.4) rotate(25deg);
@@ -116,7 +115,7 @@
             }
         }
 
-        /* --- 4. CHIM BAY (ẢNH ĐỘNG ĐÃ XOAY ĐÚNG HƯỚNG) --- */
+        /* --- 4. CHIM BAY (File: bird.gif - Đã xoay đúng hướng) --- */
         .bird-obj {
             position: absolute;
             width: 38px;
@@ -253,17 +252,17 @@
         <!-- 1. BACKGROUND NỀN -->
         <div class="view-bg"></div>
         
-        <!-- 2. HAI ĐÁM MÂY KHÁC NHAU -->
+        <!-- 2. HAI ĐÁM MÂY (cloud1.png và cloud2.png) -->
         <img src="cloud1.png" alt="Mây 1" class="cloud-base cloud-img1">
         <img src="cloud2.png" alt="Mây 2" class="cloud-base cloud-img2">
 
-        <!-- 3. MÁY BAY HIỆU ỨNG 3D/4D BAY XÉO VƯỢT QUA ĐẦU -->
+        <!-- 3. MÁY BAY 3D/4D (airplanes.png) -->
         <div class="airplane-wrapper">
             <div class="smoke-trail"></div>
             <img src="airplanes.png" alt="Phi đội máy bay" class="airplanes-img">
         </div>
 
-        <!-- 4. CHIM BAY (ẢNH ĐỘNG) -->
+        <!-- 4. CHIM BAY (bird.gif) -->
         <img src="bird.gif" alt="Chim bay" class="bird-obj bird-pos1">
         <img src="bird.gif" alt="Chim bay" class="bird-obj bird-pos2">
 

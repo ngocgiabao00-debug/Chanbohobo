@@ -21,7 +21,7 @@
             overflow: hidden;
         }
 
-        /* KHUNG KHUNG CẢNH BÊN TRONG CONTAINER */
+        /* KHUNG GAME CHÍNH TRÊN ĐIỆN THOẠI */
         .container {
             width: 100%;
             max-width: 380px;
@@ -37,113 +37,92 @@
             align-items: center;
         }
 
-        /* --- BỐI CẢNH NỀN: BẦU TRỜI, MẶT ĐẤT & BIỂN --- */
+        /* --- 1. BACKGROUND NỀN (File: background.png) --- */
         .view-bg {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(to bottom, #4ea8de 0%, #90e0ef 50%, #caf0f8 100%);
+            background-image: url('background.png'); 
+            background-size: cover;
+            background-position: center;
             z-index: 1;
         }
 
-        /* Biển xanh ở phía dưới */
-        .sea {
+        /* --- 2. HAI ĐÁM MÂY KHÁC NHAU (File: cloud1.png & cloud2.png) --- */
+        .cloud-base {
             position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 35%;
-            background: linear-gradient(to bottom, #0077b6, #023e8a);
             z-index: 2;
-        }
-
-        /* Dải đất / Bờ biển ở giữa (giao giữa bầu trời và biển) */
-        .land {
-            position: absolute;
-            bottom: 30%; left: -10%; width: 120%; height: 80px;
-            background: #2b9348;
-            border-radius: 50% 50% 0 0;
-            border-top: 8px solid #55a630;
-            z-index: 3;
-        }
-
-        /* --- CÁC HIỆU ỨNG ĐỘNG (MÂY, CHIM VỖ CÁNH, MÁY BAY) --- */
-        
-        /* 1. MÂY TRÔI */
-        .cloud {
-            position: absolute;
-            background: #ffffff;
-            border-radius: 50px;
-            opacity: 0.85;
-            z-index: 4;
+            height: auto;
+            object-fit: contain;
+            opacity: 0.9;
             animation: moveCloud linear infinite;
         }
-        .cloud::before, .cloud::after {
-            content: '';
-            position: absolute;
-            background: #ffffff;
-            border-radius: 50%;
+        .cloud-img1 {
+            width: 85px;
+            top: 35px;
+            left: -110px;
+            animation-duration: 16s;
         }
-        .cloud1 {
-            width: 80px; height: 26px; top: 40px; left: -100px;
-            animation-duration: 12s;
+        .cloud-img2 {
+            width: 100px;
+            top: 90px;
+            left: -130px;
+            animation-duration: 21s;
+            animation-delay: 4s;
         }
-        .cloud1::before { width: 35px; height: 35px; top: -15px; left: 12px; }
-        .cloud1::after { width: 25px; height: 25px; top: -10px; right: 12px; }
-
-        .cloud2 {
-            width: 100px; height: 30px; top: 90px; left: -120px;
-            animation-duration: 18s; animation-delay: 4s;
-        }
-        .cloud2::before { width: 45px; height: 45px; top: -20px; left: 15px; }
-        .cloud2::after { width: 30px; height: 30px; top: -12px; right: 15px; }
-
         @keyframes moveCloud {
             0% { transform: translateX(0); }
-            100% { transform: translateX(520px); }
+            100% { transform: translateX(510px); }
         }
 
-        /* 2. CHIM VỖ CÁNH BAY */
-        .bird-wrapper {
+        /* --- 3. PHI ĐỘI 3 MÁY BAY CHUNG 1 ẢNH PNG XẢ KHÓI (File: airplanes.png) --- */
+        .airplane-wrapper {
             position: absolute;
-            z-index: 5;
-            animation: flyAcross 9s linear infinite;
+            top: 45px;
+            left: -100px;
+            z-index: 4;
+            display: flex;
+            align-items: center;
+            animation: flyPlaneWithSmoke 13s linear infinite;
         }
-        .bird1-pos { top: 70px; left: -50px; animation-delay: 1s; }
-        .bird2-pos { top: 120px; left: -50px; animation-delay: 5s; }
-
-        /* Khung xương cánh chim nhấp nháy vỗ cánh */
-        .bird-wings {
-            width: 18px;
-            height: 12px;
-            border-top: 3px solid #111;
-            border-left: 3px solid #111;
-            transform: rotate(45deg);
-            animation: flapWings 0.4s ease-in-out infinite alternate;
+        .airplanes-img {
+            width: 90px; /* Độ rộng của cụm 3 máy bay */
+            height: auto;
+            object-fit: contain;
+            image-rendering: pixelated;
         }
-        @keyframes flapWings {
-            0% { transform: rotate(20deg) scaleY(1); }
-            100% { transform: rotate(70deg) scaleY(0.4); }
+        /* Vệt khói trắng phản lực dài phía sau cả đội hình */
+        .smoke-trail {
+            width: 90px;
+            height: 7px;
+            background: linear-gradient(to left, rgba(255,255,255,0.95), rgba(255,255,255,0.1) 85%, transparent);
+            border-radius: 4px;
+            margin-right: -5px;
+            filter: blur(1px);
         }
-        @keyframes flyAcross {
-            0% { transform: translateX(0) translateY(0); }
-            50% { transform: translateX(230px) translateY(-15px); }
-            100% { transform: translateX(460px) translateY(5px); }
-        }
-
-        /* 3. MÁY BAY BAY NGANG */
-        .airplane {
-            position: absolute;
-            top: 35px; left: -60px;
-            font-size: 26px;
-            z-index: 5;
-            animation: flyPlane 14s linear infinite;
-            animation-delay: 2s;
-        }
-        @keyframes flyPlane {
-            0% { transform: translateX(0) rotate(2deg); opacity: 0; }
+        @keyframes flyPlaneWithSmoke {
+            0% { transform: translateX(0) translateY(0); opacity: 0; }
             10% { opacity: 1; }
             90% { opacity: 1; }
-            100% { transform: translateX(480px) rotate(-2deg); opacity: 0; }
+            100% { transform: translateX(500px) translateY(-12px); opacity: 0; }
         }
 
-        /* --- HIỂN THỊ NỘI DUNG (TRANG CHỦ & CHỌN NHÂN VẬT) --- */
+        /* --- 4. CHIM ẢNH ĐỘNG (File: bird.gif) --- */
+        .bird-obj {
+            position: absolute;
+            width: 35px;
+            height: auto;
+            z-index: 4;
+            animation: flyBirdPath 8s linear infinite;
+        }
+        .bird-pos1 { top: 100px; left: -50px; animation-delay: 0s; }
+        .bird-pos2 { top: 160px; left: -50px; animation-delay: 4s; }
+        @keyframes flyBirdPath {
+            0% { transform: translateX(0) translateY(0); }
+            50% { transform: translateX(230px) translateY(-25px); }
+            100% { transform: translateX(470px) translateY(0); }
+        }
+
+        /* --- NỘI DUNG GIAO DIỆN TRANG CHỦ & CHỌN NHÂN VẬT --- */
         #home-screen, #char-screen {
             position: relative;
             z-index: 10;
@@ -225,7 +204,7 @@
             object-fit: contain;
         }
         
-        /* Hiệu ứng đầu lắc lư */
+        /* Hiệu ứng đầu nhân vật lắc lư */
         @keyframes headShake {
             0% { transform: rotate(0deg); }
             25% { transform: rotate(-8deg); }
@@ -260,28 +239,28 @@
 <body>
 
     <div class="container">
-        <!-- HỌA TIẾT BẢO CẢNH (NỀN BIỂN, ĐẤT, MÂY, CHIM, MÁY BAY) -->
+        <!-- 1. BACKGROUND CỦA BẠN -->
         <div class="view-bg"></div>
-        <div class="land"></div>
-        <div class="sea"></div>
         
-        <!-- Mây bay -->
-        <div class="cloud cloud1"></div>
-        <div class="cloud cloud2"></div>
+        <!-- 2. HAI ĐÁM MÂY KHÁC NHAU -->
+        <img src="cloud1.png" alt="Mây 1" class="cloud-base cloud-img1">
+        <img src="cloud2.png" alt="Mây 2" class="cloud-base cloud-img2">
 
-        <!-- Chim vỗ cánh bay -->
-        <div class="bird-wrapper bird1-pos"><div class="bird-wings"></div></div>
-        <div class="bird-wrapper bird2-pos"><div class="bird-wings"></div></div>
+        <!-- 3. 3 MÁY BAY TRONG 1 FILE PNG XẢ KHÓI -->
+        <div class="airplane-wrapper">
+            <div class="smoke-trail"></div>
+            <img src="airplanes.png" alt="Phi đội máy bay" class="airplanes-img">
+        </div>
 
-        <!-- Máy bay bay ngang -->
-        <div class="airplane">✈️</div>
+        <!-- 4. CHIM BAY (ẢNH ĐỘNG) -->
+        <img src="bird.gif" alt="Chim bay" class="bird-obj bird-pos1">
+        <img src="bird.gif" alt="Chim bay" class="bird-obj bird-pos2">
 
         <!-- TRANG CHỦ -->
         <div id="home-screen">
             <h1>THẾ GIỚI CỦA TÔI</h1>
             <p>Hello xin chào! Đã tới với thế giới game độc quyền đỉnh cao lớp 8.</p>
 
-            <!-- Nút bấm chữ OPEN duy nhất -->
             <button class="btn-open" onclick="goToCharacterSelect()">OPEN</button>
         </div>
 
